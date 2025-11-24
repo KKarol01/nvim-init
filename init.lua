@@ -277,5 +277,12 @@ vim.keymap.set("n", "<C-s>", "<cmd>wa<cr>")
 vim.keymap.set("n", "<leader>qs", function()
   require("persistence").load()
 end)
+-- disable Ctrl+z in normal mode minimizing the window
+vim.keymap.set("n", "<C-z>", "<nop>")
+
+-- Ctrl+v in insert mode to paste from system clipboard
+vim.keymap.set("i", "<C-v>", '<C-o>"*p')
+-- Ctrl+c in visual mode to copy to system clipboard
+vim.keymap.set("v", "<C-c>", '"*y')
 
 vim.cmd("colorscheme vscode")
