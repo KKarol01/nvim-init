@@ -99,6 +99,13 @@ require("lazy").setup({
     }
   },
   
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+
+    }
+  },
+  
 })
 
 ---------------------------------------------------------------
@@ -167,6 +174,21 @@ cmp.setup({
 })
 
 require('lualine').setup()
+
+-- setup CTRL+/ to toggle line-style comments for c/c++ for both visual and normal modes
+require('Comment').setup({
+    toggler = {
+        ---Line-comment toggle keymap
+      line = '<C-/>',
+    },
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+	opleader = {
+	  line = '<C-/>',
+	},
+})
+ -- Set only line comment
+local ft = require('Comment.ft')
+ft({'c', 'cpp'}, '//%s')
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
