@@ -57,7 +57,7 @@ require("lazy").setup({
 
   -- UI stuff
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "nvim-lualine/lualine.nvim" },
+  { "nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons' } },
   
   { 
 	'Civitasv/cmake-tools.nvim',
@@ -166,6 +166,7 @@ cmp.setup({
   },
 })
 
+require('lualine').setup()
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
