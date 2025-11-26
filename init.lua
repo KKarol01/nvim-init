@@ -1,11 +1,3 @@
--- ============================================================
--- Modern Neovim 0.11+ init.lua (Windows, C++ autocomplete)
--- Using new vim.lsp.config API (no lspconfig)
--- ============================================================
-
----------------------------------------------------------------
--- Bootstrap lazy.nvim
----------------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -167,8 +159,8 @@ cmp.setup({
 
   mapping = cmp.mapping.preset.insert({
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<ArrowDown>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -211,9 +203,8 @@ ft({'c', 'cpp'}, '//%s')
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
----------------------------------------------------------------
--- LSP: Modern Neovim >=0.11 API (NO lspconfig wrapper)
----------------------------------------------------------------
+vim.diagnostic.config({ virtual_text = true })
+
 vim.lsp.config["clangd"] = {
   cmd = { "clangd", "--background-index", "-completion-style=detailed" },
   capabilities = capabilities,
